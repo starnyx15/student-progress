@@ -25,3 +25,16 @@ const App = () => {
 };
 
 export default App;
+const fetchStudents = async () => {
+    const response = await axios.get('https://<your-heroku-app>.herokuapp.com/api/students');
+    setStudents(response.data);
+};
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post('https://<your-heroku-app>.herokuapp.com/api/students', { name, grade, progress });
+    fetchStudents();
+    setName('');
+    setGrade('');
+    setProgress('');
+};
